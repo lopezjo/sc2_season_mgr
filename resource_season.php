@@ -113,8 +113,6 @@ function update_season($season_id)
 			 */
 					
 			$db_connection->autocommit(FALSE);
-			$db_connection->begin_transaction();
-
 			$update = "UPDATE seasons SET " .
 					  "season_name=" . get_sql_value($season, 'name') . "," .
 					  "season_start=" . get_sql_value($season, 'date') . "," .
@@ -141,10 +139,7 @@ function update_season($season_id)
 		
 			$db_connection->rollback();
 		}
-		finally
-		{
-			$db_connection->autocommit(TRUE);
-		}		
+		$db_connection->autocommit(TRUE);
 	}
 	catch(Exception $e)
 	{

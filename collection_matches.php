@@ -69,9 +69,7 @@ function add_match($season_id, $division_id)
 		*/
 		try
 		{
-			$db_connection->autocommit(FALSE);
-			$db_connection->begin_transaction();
-			
+			$db_connection->autocommit(FALSE);			
 			$insert = 'INSERT INTO matches (division_id, player1_id, player2_id, ' .
 					  'winner_id, map_id) VALUES (' .
 					  get_sql_value($division, 'id') . ',' .
@@ -94,10 +92,7 @@ function add_match($season_id, $division_id)
 
 			$db_connection->rollback();
 		}
-		finally
-		{
-			$db_connection->autocommit(TRUE);
-		}			
+		$db_connection->autocommit(TRUE);
 	}
 	catch(Exception $e)
 	{

@@ -116,8 +116,6 @@ function update_match($season_id, $division_id, $match_id)
 			 */
 					
 			$db_connection->autocommit(FALSE);
-			$db_connection->begin_transaction();
-
 			$update = "UPDATE matches SET " .
 					  "division_id=" . get_sql_value($division, 'id') . "," .
 					  "player1_id=" . get_sql_value($player1, 'id') . "," .
@@ -140,10 +138,7 @@ function update_match($season_id, $division_id, $match_id)
 		
 			$db_connection->rollback();
 		}
-		finally
-		{
-			$db_connection->autocommit(TRUE);
-		}		
+		$db_connection->autocommit(TRUE);
 	}
 	catch(Exception $e)
 	{
