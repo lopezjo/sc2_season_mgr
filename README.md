@@ -44,33 +44,34 @@ Variables include the database connection info and a whitelist of approved clien
 ## Usage
 ### Player APIs
 #### Adding a player
+
 <p>
-HTTP VERB: ``POST`` <br />
-URI: ``http://[base_uri]/players``
+HTTP VERB: POST
+URI: http://[base_uri]/players
 
 Sample POST data:
 
-``{ "name": "Freeedom" }``
+{ "name": "Freeedom" }
 </p>
 
 #### Getting players
 <p>
-HTTP VERB: ``GET`` <br />
-URI: ``http://[base_uri]/players``
+HTTP VERB: GET
+URI: http://[base_uri]/players
 
 Sample data returned:
 
-<code>[<br />
+<code>[
     {
         "id": 5,
         "href": "http://localhost/sc2_season_mgr/players/5",
         "name": "Freeedom"
-    },<br />
+    },
     {
         "id": 6,
         "href": "http://localhost/sc2_season_mgr/players/6",
         "name": "HurtnTime"
-    }<br />
+    }
 ]</code>
 </p>
 
