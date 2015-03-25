@@ -44,38 +44,432 @@ Variables include the database connection info and a whitelist of approved clien
 ## Usage
 ### Player APIs
 #### Adding a player
-<p>
-HTTP VERB: ``POST`` <br />
-URI: ``http://[base_uri]/players``
+URI: ``POST http://[base_uri]/players``
 
 Sample POST data:
 
-``{ "name": "Freeedom" }``
-</p>
+<pre><code>
+{ "name": "Freeedom" }
+</code></pre>
 
 #### Getting players
-<p>
-HTTP VERB: ``GET`` <br />
-URI: ``http://[base_uri]/players``
+URI: ``GET http://[base_uri]/players``
 
 Sample data returned:
 
-<code>[<br />
+<pre><code>[
     {
         "id": 5,
         "href": "http://localhost/sc2_season_mgr/players/5",
         "name": "Freeedom"
-    },<br />
+    },
     {
         "id": 6,
         "href": "http://localhost/sc2_season_mgr/players/6",
         "name": "HurtnTime"
-    }<br />
-]</code>
-</p>
+    }
+]
+</code></pre>
+
+#### Getting a player
+URI: ``GET http://[base_uri]/players/[player_id]``
+
+Sample data returned:
+
+<pre><code>{
+        "id": 5,
+        "href": "http://localhost/sc2_season_mgr/players/5",
+        "name": "Freeedom"
+    }
+</code></pre>
 
 #### Editing a player
-#### Deleting player
+URI: ``PUT http://[base_uri]/players/[player_id]``
 
+Sample PUT data:
+
+<pre><code>
+{ "name": "Freeedom" }
+</code></pre>
+
+#### Deleting a player
+URI: ``DELETE http://[base_uri]/players/[player_id]``
+
+### Map APIs
+#### Adding a map
+URI: ``POST http://[base_uri]/maps``
+
+Sample POST data:
+
+<pre><code>
+{ "name": "Overgrowth" }
+</code></pre>
+
+#### Getting maps
+URI: ``GET http://[base_uri]/maps``
+
+Sample data returned:
+
+<pre><code>[
+    {
+        "id": 7,
+        "href": "http://localhost/sc2_season_mgr/maps/7",
+        "name": "Overgrowth"
+    },
+    {
+        "id": 8,
+        "href": "http://localhost/sc2_season_mgr/maps/8",
+        "name": "Nimbus"
+    }
+]
+</code></pre>
+
+#### Getting a map
+URI: ``GET http://[base_uri]/maps/[map_id]``
+
+Sample data returned:
+
+<pre><code>{
+        "id": 7,
+        "href": "http://localhost/sc2_season_mgr/maps/7",
+        "name": "Overgrowth"
+    }
+</code></pre>
+
+#### Editing a map
+URI: ``PUT http://[base_uri]/maps/[map_id]``
+
+Sample PUT data:
+
+<pre><code>
+{ "name": "Overgrowth" }
+</code></pre>
+
+#### Deleting a map
+URI: ``DELETE http://[base_uri]/maps/[map_id]``
+
+### Season APIs
+#### Adding a season
+URI: ``POST http://[base_uri]/seasons``
+
+Sample POST data:
+
+<pre><code>
+{"date":null, "winner": {"id": null}, "maps": [{"id": 7}, {"id": 8}], "name": "Test Season 1"}
+</code></pre>
+
+#### Getting seasons
+URI: ``GET http://[base_uri]/seasons``
+
+Sample data returned:
+
+<pre><code>[
+    {
+        "id": 3,
+        "href": "http://localhost/sc2_season_mgr/seasons/3",
+        "name": "Test Season 1",
+        "date": null,
+        "winner": {
+            "id": null,
+            "name": null,
+            "href": null
+        },
+        "maps": [
+            {
+                "id": 7,
+                "name": "Overgrowth",
+                "href": "http://localhost/sc2_season_mgr/maps/7"
+            },
+            {
+                "id": 8,
+                "name": "Nimbus",
+                "href": "http://localhost/sc2_season_mgr/maps/8"
+            }
+        ],
+        "divisions_href": "http://localhost/sc2_season_mgr/seasons/3/divisions"
+    },
+    {
+        "id": 4,
+        "href": "http://localhost/sc2_season_mgr/seasons/4",
+        "name": "Test Season 2",
+        "date": null,
+        "winner": {
+            "id": null,
+            "name": null,
+            "href": null
+        },
+        "maps": [
+            {
+                "id": 7,
+                "name": "Overgrowth",
+                "href": "http://localhost/sc2_season_mgr/maps/7"
+            },
+            {
+                "id": 8,
+                "name": "Nimbus",
+                "href": "http://localhost/sc2_season_mgr/maps/8"
+            }
+        ],
+        "divisions_href": "http://localhost/sc2_season_mgr/seasons/4/divisions"
+    }
+]
+</code></pre>
+
+#### Getting a season
+URI: ``GET http://[base_uri]/seasons/[season_id]``
+
+Sample data returned:
+
+<pre><code>{
+        "id": 3,
+        "href": "http://localhost/sc2_season_mgr/seasons/3",
+        "name": "Test Season 1",
+        "date": null,
+        "winner": {
+            "id": null,
+            "name": null,
+            "href": null
+        },
+        "maps": [
+            {
+                "id": 7,
+                "name": "Overgrowth",
+                "href": "http://localhost/sc2_season_mgr/maps/7"
+            },
+            {
+                "id": 8,
+                "name": "Nimbus",
+                "href": "http://localhost/sc2_season_mgr/maps/8"
+            }
+        ],
+        "divisions_href": "http://localhost/sc2_season_mgr/seasons/3/divisions"
+    }
+</code></pre>
+
+#### Editing a season
+URI: ``PUT http://[base_uri]/seasons/[season_id]``
+
+Sample PUT data:
+
+<pre><code>
+{"date":null, "winner": {"id": null}, "maps": [{"id": 7}, {"id": 8}], "name": "Test Season 1"}
+</code></pre>
+
+#### Deleting a season
+URI: ``DELETE http://[base_uri]/seasons/[season_id]``
+
+### Division APIs
+A season is broken up into one or more divisions. When players are added to a division, matches 
+are automatically generated for the player using a randomly selected map from the list of maps
+the season is using.
+
+#### Adding a division
+URI: ``POST http://[base_uri]/seasons/[season_id]/divisions``
+
+Sample POST data:
+
+<pre><code>
+{"name": "Diamond", "season": {"id": 3}, "players": [{"id": 5}, {"id": 6}]}
+</code></pre>
+
+#### Getting divisions
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions``
+
+Sample data returned:
+
+<pre><code>[
+    {
+        "id": 18,
+        "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/18",
+        "name": "Diamond",
+        "season": {
+            "id": 3,
+            "name": "Test Season 1",
+            "href": "http://localhost/sc2_season_mgr/seasons/3"
+        },
+        "players": [
+            {
+                "id": 5,
+                "name": "Freeedom",
+                "href": "http://localhost/sc2_season_mgr/players/5"
+            },
+            {
+                "id": 6,
+                "name": "HurtnTime",
+                "href": "http://localhost/sc2_season_mgr/players/6"
+            }
+        ],
+        "matches_href": "http://localhost/sc2_season_mgr/seasons/3/divisions/18/matches"
+    },
+    {
+        "id": 20,
+        "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/20",
+        "name": "Master",
+        "season": {
+            "id": 3,
+            "name": "Test Season 1",
+            "href": "http://localhost/sc2_season_mgr/seasons/3"
+        },
+        "players": [
+            {
+                "id": 5,
+                "name": "Freeedom",
+                "href": "http://localhost/sc2_season_mgr/players/5"
+            },
+            {
+                "id": 6,
+                "name": "HurtnTime",
+                "href": "http://localhost/sc2_season_mgr/players/6"
+            }
+        ],
+        "matches_href": "http://localhost/sc2_season_mgr/seasons/3/divisions/20/matches"
+    }
+]
+</code></pre>
+
+#### Getting a division
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions/[division_id]``
+
+Sample data returned:
+
+<pre><code>{
+        "id": 18,
+        "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/18",
+        "name": "Diamond",
+        "season": {
+            "id": 3,
+            "name": "Test Season 1",
+            "href": "http://localhost/sc2_season_mgr/seasons/3"
+        },
+        "players": [
+            {
+                "id": 5,
+                "name": "Freeedom",
+                "href": "http://localhost/sc2_season_mgr/players/5"
+            },
+            {
+                "id": 6,
+                "name": "HurtnTime",
+                "href": "http://localhost/sc2_season_mgr/players/6"
+            }
+        ],
+        "matches_href": "http://localhost/sc2_season_mgr/seasons/3/divisions/18/matches"
+    }
+]
+</code></pre>
+
+#### Editing a division
+URI: ``PUT http://[base_uri]/seasons/[season_id]/divisions/[division_id]``
+
+Sample PUT data:
+
+<pre><code>
+{"name": "Diamond", "season": {"id": 3}, "players": [{"id": 5}, {"id": 6}]}
+</code></pre>
+
+#### Deleting a division
+URI: ``DELETE http://[base_uri]/seasons/[season_id]/divisions/[division_id]``
+
+### Matches APIs
+Matches are normally created and deleted when the players of a division are modified.
+
+#### Adding a match
+Should not have to manually add a match.
+
+URI: ``POST http://[base_uri]/seasons/[season_id]/divisions/[division_id]/matches``
+
+Sample POST data:
+
+<pre><code>
+{"division": {"id": 20}, "player1": {"id": 5}, "player2": {"id": 6}, "winner": {"id": null}, "map": {"id": 7}}
+</code></pre>
+
+#### Getting matches
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions/[division_id]/matches``
+
+Sample data returned:
+
+<pre><code>[
+    {
+        "id": 35,
+        "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/20/matches/35",
+        "division": {
+            "id": 20,
+            "name": "Master",
+            "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/20"
+        },
+        "player1": {
+            "id": 5,
+            "name": "Freeedom",
+            "href": "http://localhost/sc2_season_mgr/players/5"
+        },
+        "player2": {
+            "id": 6,
+            "name": "HurtnTime",
+            "href": "http://localhost/sc2_season_mgr/players/6"
+        },
+        "winner": {
+            "id": null,
+            "name": null,
+            "href": null
+        },
+        "map": {
+            "id": 7,
+            "name": "Overgrowth",
+            "href": "http://localhost/sc2_season_mgr/maps/7"
+        }
+    }
+]
+</code></pre>
+
+#### Getting a match
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions/[division_id]/matches/[match_id]``
+
+Sample data returned:
+
+<pre><code>{
+    "id": 35,
+    "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/20/matches/35",
+    "division": {
+        "id": 20,
+        "name": "Master",
+        "href": "http://localhost/sc2_season_mgr/seasons/3/divisions/20"
+    },
+    "player1": {
+        "id": 5,
+        "name": "Freeedom",
+        "href": "http://localhost/sc2_season_mgr/players/5"
+    },
+    "player2": {
+        "id": 6,
+        "name": "HurtnTime",
+        "href": "http://localhost/sc2_season_mgr/players/6"
+    },
+    "winner": {
+        "id": null,
+        "name": null,
+        "href": null
+    },
+    "map": {
+        "id": 7,
+        "name": "Overgrowth",
+        "href": "http://localhost/sc2_season_mgr/maps/7"
+    }
+}
+</code></pre>
+
+#### Editing a match
+URI: ``PUT http://[base_uri]/seasons/[season_id]/divisions/[division_id]/matches/[match_id]``
+
+Sample PUT data:
+
+<pre><code>
+{"division": {"id": 20}, "player1": {"id": 5}, "player2": {"id": 6}, "winner": {"id": 6}, "map": {"id": 7}}
+</code></pre>
+
+#### Deleting a season
+Should not have to manually delete a match.
+
+URI: ``http://[base_uri]/seasons/[season_id]/divisions/[division_id]/matches/[match_id]``
 
 
