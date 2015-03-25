@@ -1,0 +1,13 @@
+Add / update season
+
+{"date":null, "winner": {"id": null}, "maps": [{"id": 1}, {"id": 2}], "name": "Test Season"}
+
+Add / update division
+
+{"name": "Master", "season": {"id": 2}, "players": [{"id": 1}, {"id": 2}]}
+    
+ Add / update match
+ 
+{"division": {"id": 1}, "player1": {"id": 1}, "player2": {"id": 2}, "winner": {"id": 1}, "map": {"id": 1}}
+     
+     
