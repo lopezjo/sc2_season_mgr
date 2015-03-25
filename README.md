@@ -55,13 +55,12 @@ Sample POST data:
 </p>
 
 #### Getting players
-<p>
-HTTP VERB: GET
-URI: http://[base_uri]/players
+
+URI: ``GET http://[base_uri]/players``
 
 Sample data returned:
 
-<code>[
+<pre><code>[
     {
         "id": 5,
         "href": "http://localhost/sc2_season_mgr/players/5",
@@ -72,8 +71,7 @@ Sample data returned:
         "href": "http://localhost/sc2_season_mgr/players/6",
         "name": "HurtnTime"
     }
-]</code>
-</p>
+]</code></pre>
 
 #### Editing a player
 #### Deleting player
