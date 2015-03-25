@@ -82,7 +82,7 @@ function add_division()
 			 * Now add division players
 			 */
 			$division_id = $db_connection->insert_id;
-			add_division_players($db_connection, $division_id, $players);
+			update_division_players($db_connection, $division_id, $players);
 				
 			$db_connection->commit();
 		}

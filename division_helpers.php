@@ -2,6 +2,7 @@
 
 include_once 'season_helpers.php';
 include_once 'player_helpers.php';
+include_once 'match_helpers.php';
 
 function division_row_to_response($db_connection, $row)
 {
@@ -117,25 +118,62 @@ function check_division($division)
 	}
 }
 
-function add_division_players($db_connection, $division_id, $players)
+function update_division_players($db_connection, $division_id, $players)
 {
+	$prev_players = get_division_players($db_connection, $division_id);
+	$curr_players = array();
+	
+	/*
+	 * Add new players to division
+	 */
 	foreach ($players as $player)
 	{
+		$curr_players[] = $player['id'];
+		
+		/*
+		 * If the player already exists, then do nothing.
+		 */
+		if (in_array($player['id'], $prev_players))
+		{
+			continue;
+		}
+		
 		$insert = 'INSERT INTO division_players (division_id, player_id) ' .
-				'VALUES (' .
-				"'" . $division_id . "', " .
-				get_sql_value($player, 'id') . ')';
+				  'VALUES (' .
+				  "'" . $division_id . "', " .
+				  get_sql_value($player, 'id') . ')';
 
 		if (!$result = $db_connection->query($insert))
 		{
 			throw new Exception($db_connection->error, $db_connection->errno);
 		}
+		
+		/*
+		 * Generate matches for player
+		 */
+		generate_matches_for_player($db_connection, $division_id, $player['id']);
+	}
+	
+	/*
+	 * Remove players from division
+	 */
+	foreach ($prev_players as $player_id)
+	{
+		if (!in_array($player_id, $curr_players))
+		{
+			del_division_player($db_connection, $division_id, $player_id);
+		}
 	}
 }
 
-function del_division_players($db_connection, $division_id)
+function del_division_player($db_connection, $division_id, $player_id)
 {
-	if (!$result = $db_connection->query("DELETE FROM division_players WHERE division_id=$division_id"))
+	if (!$result = $db_connection->query("DELETE FROM division_players WHERE division_id=$division_id AND player_id=$player_id"))
+	{
+		throw new Exception($db_connection->error, $db_connection->errno);
+	}
+	
+	if (!$result = $db_connection->query("DELETE FROM matches WHERE division_id=$division_id AND (player1_id=$player_id OR player2_id=$player_id)"))
 	{
 		throw new Exception($db_connection->error, $db_connection->errno);
 	}

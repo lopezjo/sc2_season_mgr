@@ -128,9 +128,8 @@ function update_division($season_id, $division_id)
 			/*
 			 * Fix up division players
 			 */
-			del_division_players($db_connection, $division_id);
-			add_division_players($db_connection, $division_id, $players);
-						
+			update_division_players($db_connection, $division_id, $players);
+				
 			$db_connection->commit();
 		}
 		catch (Exception $e)
