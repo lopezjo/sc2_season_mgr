@@ -19,7 +19,7 @@ function get_matches($season_id, $division_id)
 	$db_connection = db_open();
 
 	/*
-	 * Get the list of divisions
+	 * Get the list of matches
 	*/
 	if ($result = $db_connection->query("SELECT * FROM matches WHERE division_id=$division_id"))
 	{
