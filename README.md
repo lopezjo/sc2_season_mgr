@@ -12,4 +12,12 @@ https://github.com/jmathai/epiphany/tree/master/src
 
 ### Variables
 
+Update the variables defined in:
+
+https://github.com/lopezjo/sc2_season_mgr/blob/master/settings.php
+
+### Database
+
+A MySQL database is used by this project. To recreate the database use the .SQL file found in the ./schema folder. 
+
 
