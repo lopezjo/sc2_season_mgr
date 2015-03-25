@@ -67,7 +67,6 @@ function add_division()
 		try
 		{
 			$db_connection->autocommit(FALSE);
-			$db_connection->begin_transaction();
 			$insert = 'INSERT INTO divisions (division_name, season_id) ' .
 					'VALUES (' .
 					get_sql_value($division, 'name') . ',' .
@@ -93,10 +92,7 @@ function add_division()
 	
 			$db_connection->rollback();
 		}
-		finally
-		{
-			$db_connection->autocommit(TRUE);
-		}
+		$db_connection->autocommit(TRUE);
 	}
 	catch(Exception $e)
 	{
