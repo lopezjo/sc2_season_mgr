@@ -113,8 +113,6 @@ function update_division($season_id, $division_id)
 			 */
 					
 			$db_connection->autocommit(FALSE);
-			$db_connection->begin_transaction();
-
 			$update = "UPDATE divisions SET " .
 					  "division_name=" . get_sql_value($division, 'name') . "," .
 					  "season_id=" . get_sql_value($season, 'id') . " " .
@@ -139,10 +137,7 @@ function update_division($season_id, $division_id)
 		
 			$db_connection->rollback();
 		}
-		finally
-		{
-			$db_connection->autocommit(TRUE);
-		}		
+		$db_connection->autocommit(TRUE);
 	}
 	catch(Exception $e)
 	{

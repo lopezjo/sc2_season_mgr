@@ -67,7 +67,6 @@ function add_season()
 		try
 		{
 			$db_connection->autocommit(FALSE);
-			$db_connection->begin_transaction();
 			$insert = 'INSERT INTO seasons (season_name, season_start, season_winner) ' .
 					  'VALUES (' .
 					  get_sql_value($season, 'name') . ',' .
@@ -94,10 +93,7 @@ function add_season()
 
 			$db_connection->rollback();
 		}
-		finally 
-		{
-			$db_connection->autocommit(TRUE);
-		}	
+		$db_connection->autocommit(TRUE);
 	}
 	catch(Exception $e)
 	{
