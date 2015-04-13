@@ -747,3 +747,52 @@ Sample data returned:
     ]
 }
 </code></pre>
+
+### Standings API
+The standings collection returns a list of players in order of wins and losses for
+the division.
+
+#### Getting stangings
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions/[division_id]/standings``
+
+Sample data returned:
+
+<pre><code>[
+    {
+        "player": {
+            "id": 1,
+            "name": "HurtnTime",
+            "href": "http://localhost/sc2_season_mgr/players/1"
+        },
+        "wins": 3,
+        "losses": 0
+    },
+    {
+        "player": {
+            "id": 4,
+            "name": "Zelevin",
+            "href": "http://localhost/sc2_season_mgr/players/4"
+        },
+        "wins": 2,
+        "losses": 1
+    },
+    {
+        "player": {
+            "id": 9,
+            "name": "SEF",
+            "href": "http://localhost/sc2_season_mgr/players/9"
+        },
+        "wins": 1,
+        "losses": 2
+    },
+    {
+        "player": {
+            "id": 5,
+            "name": "Sheikh",
+            "href": "http://localhost/sc2_season_mgr/players/5"
+        },
+        "wins": 0,
+        "losses": 3
+    }
+]
+</code></pre>
