@@ -472,4 +472,278 @@ Should not have to manually delete a match.
 
 URI: ``http://[base_uri]/seasons/[season_id]/divisions/[division_id]/matches/[match_id]``
 
+### Rounds APIs
+The division is scheduled via round-robin where all players play against each other.
+A round contains a set of matches between all players.
 
+#### Getting rounds
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions/[division_id]/rounds``
+
+Sample data returned:
+
+<pre><code>[
+    {
+        "id": 1,
+        "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/rounds/1",
+        "matches": [
+            {
+                "id": 14,
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/14",
+                "division": {
+                    "id": 3,
+                    "name": "Platinum",
+                    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+                },
+                "player1": {
+                    "id": 1,
+                    "name": "HurtnTime",
+                    "href": "http://localhost/sc2_season_mgr/players/1"
+                },
+                "player2": {
+                    "id": 9,
+                    "name": "SEF",
+                    "href": "http://localhost/sc2_season_mgr/players/9"
+                },
+                "winner": {
+                    "id": null,
+                    "name": null,
+                    "href": null
+                },
+                "map": {
+                    "id": 1,
+                    "name": "Overgrowth",
+                    "href": "http://localhost/sc2_season_mgr/maps/1"
+                }
+            },
+            {
+                "id": 13,
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/13",
+                "division": {
+                    "id": 3,
+                    "name": "Platinum",
+                    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+                },
+                "player1": {
+                    "id": 4,
+                    "name": "Zelevin",
+                    "href": "http://localhost/sc2_season_mgr/players/4"
+                },
+                "player2": {
+                    "id": 5,
+                    "name": "Sheikh",
+                    "href": "http://localhost/sc2_season_mgr/players/5"
+                },
+                "winner": {
+                    "id": null,
+                    "name": null,
+                    "href": null
+                },
+                "map": {
+                    "id": 5,
+                    "name": "King Sejong",
+                    "href": "http://localhost/sc2_season_mgr/maps/5"
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/rounds/2",
+        "matches": [
+            {
+                "id": 12,
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/12",
+                "division": {
+                    "id": 3,
+                    "name": "Platinum",
+                    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+                },
+                "player1": {
+                    "id": 1,
+                    "name": "HurtnTime",
+                    "href": "http://localhost/sc2_season_mgr/players/1"
+                },
+                "player2": {
+                    "id": 5,
+                    "name": "Sheikh",
+                    "href": "http://localhost/sc2_season_mgr/players/5"
+                },
+                "winner": {
+                    "id": null,
+                    "name": null,
+                    "href": null
+                },
+                "map": {
+                    "id": 3,
+                    "name": "Foxtrot Labs",
+                    "href": "http://localhost/sc2_season_mgr/maps/3"
+                }
+            },
+            {
+                "id": 15,
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/15",
+                "division": {
+                    "id": 3,
+                    "name": "Platinum",
+                    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+                },
+                "player1": {
+                    "id": 4,
+                    "name": "Zelevin",
+                    "href": "http://localhost/sc2_season_mgr/players/4"
+                },
+                "player2": {
+                    "id": 9,
+                    "name": "SEF",
+                    "href": "http://localhost/sc2_season_mgr/players/9"
+                },
+                "winner": {
+                    "id": null,
+                    "name": null,
+                    "href": null
+                },
+                "map": {
+                    "id": 1,
+                    "name": "Overgrowth",
+                    "href": "http://localhost/sc2_season_mgr/maps/1"
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/rounds/3",
+        "matches": [
+            {
+                "id": 11,
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/11",
+                "division": {
+                    "id": 3,
+                    "name": "Platinum",
+                    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+                },
+                "player1": {
+                    "id": 1,
+                    "name": "HurtnTime",
+                    "href": "http://localhost/sc2_season_mgr/players/1"
+                },
+                "player2": {
+                    "id": 4,
+                    "name": "Zelevin",
+                    "href": "http://localhost/sc2_season_mgr/players/4"
+                },
+                "winner": {
+                    "id": null,
+                    "name": null,
+                    "href": null
+                },
+                "map": {
+                    "id": 5,
+                    "name": "King Sejong",
+                    "href": "http://localhost/sc2_season_mgr/maps/5"
+                }
+            },
+            {
+                "id": 16,
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/16",
+                "division": {
+                    "id": 3,
+                    "name": "Platinum",
+                    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+                },
+                "player1": {
+                    "id": 5,
+                    "name": "Sheikh",
+                    "href": "http://localhost/sc2_season_mgr/players/5"
+                },
+                "player2": {
+                    "id": 9,
+                    "name": "SEF",
+                    "href": "http://localhost/sc2_season_mgr/players/9"
+                },
+                "winner": {
+                    "id": null,
+                    "name": null,
+                    "href": null
+                },
+                "map": {
+                    "id": 5,
+                    "name": "King Sejong",
+                    "href": "http://localhost/sc2_season_mgr/maps/5"
+                }
+            }
+        ]
+    }
+]
+</code></pre>
+
+#### Getting a round
+URI: ``GET http://[base_uri]/seasons/[season_id]/divisions/[division_id]/rounds/[round_id]``
+
+Sample data returned:
+
+<pre><code>{
+    "id": 3,
+    "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/rounds/3",
+    "matches": [
+        {
+            "id": 11,
+            "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/11",
+            "division": {
+                "id": 3,
+                "name": "Platinum",
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+            },
+            "player1": {
+                "id": 1,
+                "name": "HurtnTime",
+                "href": "http://localhost/sc2_season_mgr/players/1"
+            },
+            "player2": {
+                "id": 4,
+                "name": "Zelevin",
+                "href": "http://localhost/sc2_season_mgr/players/4"
+            },
+            "winner": {
+                "id": null,
+                "name": null,
+                "href": null
+            },
+            "map": {
+                "id": 5,
+                "name": "King Sejong",
+                "href": "http://localhost/sc2_season_mgr/maps/5"
+            }
+        },
+        {
+            "id": 16,
+            "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3/matches/16",
+            "division": {
+                "id": 3,
+                "name": "Platinum",
+                "href": "http://localhost/sc2_season_mgr/seasons/2/divisions/3"
+            },
+            "player1": {
+                "id": 5,
+                "name": "Sheikh",
+                "href": "http://localhost/sc2_season_mgr/players/5"
+            },
+            "player2": {
+                "id": 9,
+                "name": "SEF",
+                "href": "http://localhost/sc2_season_mgr/players/9"
+            },
+            "winner": {
+                "id": null,
+                "name": null,
+                "href": null
+            },
+            "map": {
+                "id": 5,
+                "name": "King Sejong",
+                "href": "http://localhost/sc2_season_mgr/maps/5"
+            }
+        }
+    ]
+}
+</code></pre>

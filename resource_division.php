@@ -89,7 +89,7 @@ function update_division($season_id, $division_id)
 	
 		$season = $division['season'];
 		$players = $division['players'];
-						
+		
 		try 
 		{
 			/*

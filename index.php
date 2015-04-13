@@ -38,11 +38,13 @@ include_once 'collection_players.php';
 include_once 'collection_maps.php';
 include_once 'collection_divisions.php';
 include_once 'collection_matches.php';
+include_once 'collection_rounds.php';
 include_once 'resource_season.php';
 include_once 'resource_player.php';
 include_once 'resource_map.php';
 include_once 'resource_division.php';
 include_once 'resource_match.php';
+include_once 'resource_round.php';
 
 getRoute()->get('/', 'get_documentation');
 
@@ -84,6 +86,8 @@ function get_documentation()
 	echo '[base_uri]/seasons/[:season_id]<br />';
 	echo '[base_uri]/seasons/[:season_id]/divisions<br />';
 	echo '[base_uri]/seasons/[:season_id]/divisions/[:division_id]<br />';
+	echo '[base_uri]/seasons/[:season_id]/divisions/[:division_id]/rounds<br />';
+	echo '[base_uri]/seasons/[:season_id]/divisions/[:division_id]/rounds/[:round_id]<br />';
 	echo '[base_uri]/seasons/[:season_id]/divisions/[:division_id]/matches<br />';
 	echo '[base_uri]/seasons/[:season_id]/divisions/[:division_id]/matches/[:match_id]<br />';
 	echo '[base_uri]/players/[:player_id]<br />';
