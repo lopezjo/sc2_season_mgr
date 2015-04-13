@@ -33,11 +33,7 @@ function get_maps()
 			}
 			$is_first = FALSE;
 				
-			echo '{';
-			echo '"id": '     . json_encode($row['map_id'], JSON_NUMERIC_CHECK) . ',';
-			echo '"href": "'  . BASE_URI . '/maps/' . $row['map_id'] . '",';
-			echo '"name": '   . json_encode($row['map_name']);
-			echo '}';
+			map_row_to_response($row);
 		}
 
 		/* free result set */

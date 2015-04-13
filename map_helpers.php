@@ -17,6 +17,17 @@ function get_map_name($db_connection, $map_id)
 	return $map_name;
 }
 
+function map_row_to_response($row)
+{
+	echo '{';
+	echo '"id": '         . json_encode($row['map_id'], JSON_NUMERIC_CHECK) . ',';
+	echo '"href": '       . json_encode(BASE_URI . '/maps/' . $row['map_id']) . ',';
+	echo '"name": '       . json_encode($row['map_name']) . ',';
+	echo '"links_href": ' . json_encode(BASE_URI . '/maps/' . $row['map_id'] . '/links') ;
+	echo '}';
+
+}
+
 /*
  * Use when referencing a map
  */

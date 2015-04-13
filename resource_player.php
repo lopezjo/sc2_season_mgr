@@ -1,6 +1,7 @@
 <?php
 
 include_once 'common.php';
+include_once 'player_helpers.php';
 
 /*
  * Add routes
@@ -31,12 +32,7 @@ function get_player($player_id)
 		{
 			while ($row = $result->fetch_assoc())
 			{
-				echo '{';
-				echo '"id": ' . json_encode($row['player_id'], JSON_NUMERIC_CHECK) . ',';
-				echo '"parent": "' . BASE_URI . '/players",';
-				echo '"name": ' . json_encode($row['player_name']) ;
-				echo '}';
-				
+				player_row_to_response($row);
 			}
 		}
 		$result->free();
