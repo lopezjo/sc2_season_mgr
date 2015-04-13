@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `sc2_seasons` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `sc2_seasons`;
--- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
+-- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sc2_seasons
 -- ------------------------------------------------------
--- Server version	5.6.23
+-- Server version	5.6.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -49,7 +49,7 @@ CREATE TABLE `divisions` (
   UNIQUE KEY `division_id_UNIQUE` (`division_id`),
   KEY `div_season_id_constraint_idx` (`season_id`),
   CONSTRAINT `season_id_constraint` FOREIGN KEY (`season_id`) REFERENCES `seasons` (`season_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,14 +61,20 @@ DROP TABLE IF EXISTS `links`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `links` (
   `link_id` int(11) NOT NULL AUTO_INCREMENT,
-  `match_id` int(11) NOT NULL,
+  `match_id` int(11) DEFAULT NULL,
   `link_url` varchar(2083) COLLATE utf8_unicode_ci NOT NULL,
   `link_desc` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `map_id` int(11) DEFAULT NULL,
+  `player_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`link_id`),
   UNIQUE KEY `link_id_UNIQUE` (`link_id`),
-  KEY `match_id_constraint_idx` (`match_id`),
-  CONSTRAINT `match_id_constraint` FOREIGN KEY (`match_id`) REFERENCES `matches` (`match_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `link_match_constraint_idx` (`match_id`),
+  KEY `link_map_constraint_idx` (`map_id`),
+  KEY `link_player_constraint_idx` (`player_id`),
+  CONSTRAINT `link_match_constraint` FOREIGN KEY (`match_id`) REFERENCES `matches` (`match_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `link_map_constraint` FOREIGN KEY (`map_id`) REFERENCES `maps` (`map_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `link_player_constraint` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +89,7 @@ CREATE TABLE `maps` (
   `map_name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`map_id`),
   UNIQUE KEY `map_id_UNIQUE` (`map_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +117,7 @@ CREATE TABLE `matches` (
   CONSTRAINT `player1_id_constraint` FOREIGN KEY (`player1_id`) REFERENCES `players` (`player_id`) ON UPDATE NO ACTION,
   CONSTRAINT `player2_id_constraint` FOREIGN KEY (`player2_id`) REFERENCES `players` (`player_id`) ON UPDATE NO ACTION,
   CONSTRAINT `winner_id_constraint` FOREIGN KEY (`winner_id`) REFERENCES `players` (`player_id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +132,7 @@ CREATE TABLE `players` (
   `player_name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`player_id`),
   UNIQUE KEY `player_id_UNIQUE` (`player_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +168,7 @@ CREATE TABLE `seasons` (
   UNIQUE KEY `season_id_UNIQUE` (`season_id`),
   KEY `player_id_constraint_idx` (`season_winner`),
   CONSTRAINT `player_id_constraint` FOREIGN KEY (`season_winner`) REFERENCES `players` (`player_id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -174,4 +180,4 @@ CREATE TABLE `seasons` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25  1:53:05
+-- Dump completed on 2015-04-13 12:22:40

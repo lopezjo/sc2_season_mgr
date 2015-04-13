@@ -1,7 +1,8 @@
 <?php
 
 include_once 'common.php';
-
+include_once 'player_helpers.php';
+		
 /*
  * Add routes
  */
@@ -32,12 +33,8 @@ function get_players()
 				echo ',';
 			}
 			$is_first = FALSE;
-				
-			echo '{';
-			echo '"id": '     . json_encode($row['player_id'], JSON_NUMERIC_CHECK) . ',';
-			echo '"href": "'  . BASE_URI . '/players/' . $row['player_id'] . '",';
-			echo '"name": '   . json_encode($row['player_name']);
-			echo '}';
+
+			player_row_to_response($row);
 		}
 
 		/* free result set */
