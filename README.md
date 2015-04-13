@@ -892,8 +892,8 @@ Sample data returned:
 
 ### Link APIs
 #### Adding a link
-URI: ``POST http://[base_uri]/players/[player_id]/links``
-URI: ``POST http://[base_uri]/maps/[map_id]/links``
+URI: ``POST http://[base_uri]/players/[player_id]/links``<br />
+URI: ``POST http://[base_uri]/maps/[map_id]/links``<br />
 URI: ``POST http://[base_uri]/seasons/[season_id]/divisions[division_id]/matches/[match_id]/links``
 
 Sample POST data:
@@ -903,8 +903,8 @@ Sample POST data:
 </code></pre>
 
 #### Getting links
-URI: ``GET http://[base_uri]/players/[player_id]/links``
-URI: ``GET http://[base_uri]/maps/[map_id]/links``
+URI: ``GET http://[base_uri]/players/[player_id]/links``<br />
+URI: ``GET http://[base_uri]/maps/[map_id]/links``<br />
 URI: ``GET http://[base_uri]/seasons/[season_id]/divisions[division_id]/matches/[match_id]/links``
 
 Sample data returned:
@@ -926,8 +926,8 @@ Sample data returned:
 </code></pre>
 
 #### Getting a link
-URI: ``GET http://[base_uri]/players/[player_id]/links/[link_id]``
-URI: ``GET http://[base_uri]/maps/[map_id]/links/[link_id]``
+URI: ``GET http://[base_uri]/players/[player_id]/links/[link_id]``<br />
+URI: ``GET http://[base_uri]/maps/[map_id]/links/[link_id]``<br />
 URI: ``GET http://[base_uri]/seasons/[season_id]/divisions[division_id]/matches/[match_id]/links/[link_id]``
 
 Sample data returned:
@@ -941,8 +941,8 @@ Sample data returned:
 </code></pre>
 
 #### Editing a link
-URI: ``PUT http://[base_uri]/players/[player_id]/links/[link_id]``
-URI: ``PUT http://[base_uri]/maps/[map_id]/links/[link_id]``
+URI: ``PUT http://[base_uri]/players/[player_id]/links/[link_id]``<br />
+URI: ``PUT http://[base_uri]/maps/[map_id]/links/[link_id]``<br />
 URI: ``PUT http://[base_uri]/seasons/[season_id]/divisions[division_id]/matches/[match_id]/links/[link_id]``
 
 Sample PUT data:
@@ -952,7 +952,7 @@ Sample PUT data:
 </code></pre>
 
 #### Deleting a player
-URI: ``DELETE http://[base_uri]/players/[player_id]/links/[link_id]``
-URI: ``DELETE http://[base_uri]/maps/[map_id]/links/[link_id]``
+URI: ``DELETE http://[base_uri]/players/[player_id]/links/[link_id]``<br />
+URI: ``DELETE http://[base_uri]/maps/[map_id]/links/[link_id]``<br />
 URI: ``DELETE http://[base_uri]/seasons/[season_id]/divisions[division_id]/matches/[match_id]/links/[link_id]``
 
