@@ -14,7 +14,7 @@ function match_row_to_response($db_connection, $row)
 	echo '{';
 	echo '"id": '     . json_encode($match_id, JSON_NUMERIC_CHECK) . ',';
 	echo '"href": "'  . BASE_URI . '/seasons/' . $division_info['season_id'] . '/';
-	echo 'divisions/' . $division_id . '/matches/' . $match_id. '",';
+	echo 'divisions/' . $division_id . '/matches/' . $match_id . '",';
 
 	echo '"division": ';
 	division_id_to_ref_response($division_info);
@@ -60,21 +60,20 @@ function check_match($match)
 	}
 }
 
-function match_exists($db_connection, $division_id, $player1_id, $player2_id)
+function find_match($db_connection, $division_id, $player1_id, $player2_id)
 {
-	$is_found = FALSE;
-	
+	$row = NULL;
 	$query_str = "SELECT * FROM matches WHERE division_id=$division_id " .
 	 			 "AND (" .
 	 			    "(player1_id=$player1_id AND player2_id=$player2_id) OR" .
 	 			    "(player1_id=$player2_id AND player2_id=$player1_id)" .
 				 ")";
-	
+
 	if ($result = $db_connection->query($query_str))
 	{
 		if ($result->num_rows > 0)
 		{
-			$is_found = TRUE;
+			$row = $result->fetch_assoc()	;		
 		}
 		$result->free();
 	}
@@ -82,7 +81,7 @@ function match_exists($db_connection, $division_id, $player1_id, $player2_id)
 	{
 		throw new Exception($db_connection->error, $db_connection->errno);
 	}
-	return $is_found;
+	return $row;
 }
 
 function create_match($db_connection, $division_id, $player1_id, $player2_id, $map_id)
@@ -107,7 +106,8 @@ function generate_matches_for_player($db_connection, $division_id, $player_id)
 	{
 		for ($j = $i + 1; $j < count($players); $j++)
 		{
-			if (!match_exists($db_connection, $division_id, $players[$i], $players[$j]))
+			$match_row = find_match($db_connection, $division_id, $players[$i], $players[$j]);
+			if (is_null($match_row))
 			{
 				$random_map_index = mt_rand(0, count($maps) - 1);
 				create_match($db_connection, $division_id, $players[$i], $players[$j], $maps[$random_map_index]);
