@@ -34,7 +34,10 @@ function division_row_to_response($db_connection, $row)
 	echo '],';
 
 	echo '"matches_href": "' . BASE_URI . '/seasons/' . $season_id;
-	echo '/divisions/' . $division_id . '/matches"';
+	echo '/divisions/' . $division_id . '/matches",';
+
+	echo '"rounds_href": "' . BASE_URI . '/seasons/' . $season_id;
+	echo '/divisions/' . $division_id . '/rounds"';
 	
 	echo '}';
 }
