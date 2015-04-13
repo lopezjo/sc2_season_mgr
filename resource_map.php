@@ -31,12 +31,7 @@ function get_map($map_id)
 		{
 			while ($row = $result->fetch_assoc())
 			{
-				echo '{';
-				echo '"id": ' . json_encode($row['map_id'], JSON_NUMERIC_CHECK) . ',';
-				echo '"parent": "' . BASE_URI . '/maps",';
-				echo '"name": ' . json_encode($row['map_name']) ;
-				echo '}';
-				
+				map_row_to_response($row);
 			}
 		}
 		$result->free();

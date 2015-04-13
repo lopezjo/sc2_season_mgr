@@ -34,6 +34,10 @@ function match_row_to_response($db_connection, $row)
 	
 	echo '"map": ';
 	map_id_to_ref_response($db_connection, $row['map_id']);
+	echo ',';
+	
+	echo '"links": "'  . BASE_URI . '/seasons/' . $division_info['season_id'] . '/';
+	echo 'divisions/' . $division_id . '/matches/' . $match_id . '/links"';
 	
 	echo '}';
 }

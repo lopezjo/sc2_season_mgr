@@ -27,6 +27,17 @@ function get_player_href($player_id)
 	return $href;
 }
 
+function player_row_to_response($row)
+{
+	echo '{';
+	echo '"id": '         . json_encode($row['player_id'], JSON_NUMERIC_CHECK) . ',';
+	echo '"href": '       . json_encode(BASE_URI . '/players/' . $row['player_id']) . ',';
+	echo '"name": '       . json_encode($row['player_name']) . ',';
+	echo '"links_href": ' . json_encode(BASE_URI . '/players/' . $row['player_id'] . '/links') ;
+	echo '}';
+	
+}
+
 /*
  * Use when referencing a player
  */
