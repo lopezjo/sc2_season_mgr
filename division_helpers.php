@@ -76,10 +76,15 @@ function get_division_href($division_info)
 	$href = NULL;
 	if (!is_null($division_info))
 	{
-		$href = BASE_URI . '/seasons/' . $division_info['season_id'] .
-		        '/divisions/' . $division_info['division_id'];
+		$href = get_division_href_2($division_info['season_id'], 
+									$division_info['division_id']);
 	}
 	return $href;
+}
+
+function get_division_href_2($season_id, $division_id)
+{
+	return BASE_URI . '/seasons/' . $season_id . '/divisions/' . $division_id;
 }
 
 function get_division_players($db_connection, $division_id)
