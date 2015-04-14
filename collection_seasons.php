@@ -84,6 +84,9 @@ function add_season()
 			$season_id = $db_connection->insert_id;			
 			add_season_maps($db_connection, $season_id, $maps);
 			
+			header('Location: ' . get_season_href($season_id));
+			http_response_code(201);
+			
 			$db_connection->commit();
 		}
 		catch (Exception $e)

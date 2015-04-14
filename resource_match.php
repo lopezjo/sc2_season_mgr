@@ -63,6 +63,7 @@ function delete_match($season_id, $division_id, $match_id)
 		else 
 		{
 			$result = $db_connection->query("DELETE FROM matches WHERE match_id=$match_id");
+			http_response_code(204);
 		}
 	}
 	

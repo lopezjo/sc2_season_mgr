@@ -10,11 +10,12 @@ function match_row_to_response($db_connection, $row)
 	$match_id = $row['match_id'];
 	$division_id = $row['division_id'];
 	$division_info = get_division_info($db_connection, $division_id);
+	$season_id = $division_info['season_id'];
+	$href = get_match_href($season_id, $division_id, $match_id);
 
 	echo '{';
-	echo '"id": '     . json_encode($match_id, JSON_NUMERIC_CHECK) . ',';
-	echo '"href": "'  . BASE_URI . '/seasons/' . $division_info['season_id'] . '/';
-	echo 'divisions/' . $division_id . '/matches/' . $match_id . '",';
+	echo '"id": '   . json_encode($match_id, JSON_NUMERIC_CHECK) . ',';
+	echo '"href": ' . json_encode($href) . ',';
 
 	echo '"division": ';
 	division_id_to_ref_response($division_info);
@@ -36,10 +37,16 @@ function match_row_to_response($db_connection, $row)
 	map_id_to_ref_response($db_connection, $row['map_id']);
 	echo ',';
 	
-	echo '"links": "'  . BASE_URI . '/seasons/' . $division_info['season_id'] . '/';
-	echo 'divisions/' . $division_id . '/matches/' . $match_id . '/links"';
+	echo '"links": ' . json_encode($href . '/links');
 	
 	echo '}';
+}
+
+function get_match_href($season_id, $division_id, $match_id)
+{
+	$href = BASE_URI . '/seasons/' . $season_id . '/' .
+			'divisions/' . $division_id . '/matches/' . $match_id;
+	return $href;	
 }
 
 function check_match($match)

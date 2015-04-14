@@ -63,6 +63,7 @@ function delete_season($season_id)
 		else 
 		{
 			$result = $db_connection->query("DELETE FROM seasons WHERE season_id=$season_id");
+			http_response_code(204);
 		}
 	}
 	

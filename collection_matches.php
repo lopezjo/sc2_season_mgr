@@ -83,6 +83,11 @@ function add_match($season_id, $division_id)
 				throw new Exception($db_connection->error, $db_connection->errno);
 			}
 			
+			$match_id = $db_connection->insert_id;
+			
+			header('Location: ' . get_match_href($season_id, $division_id, $match_id));
+			http_response_code(201);			
+			
 			$db_connection->commit();
 		}
 		catch (Exception $e)
