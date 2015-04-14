@@ -62,6 +62,7 @@ function delete_map($map_id)
 		else 
 		{	
 			$result = $db_connection->query("DELETE FROM maps WHERE map_id=$map_id");
+			http_response_code(204);
 		}
 	}
 	

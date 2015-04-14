@@ -74,6 +74,12 @@ function add_player()
 			http_response_code(400);
 			echo "Failed query to MySQL: (" . $db_connection->errno . ") " . $db_connection->error;
 		}
+		else
+		{
+			$player_id = $db_connection->insert_id;
+			header('Location: ' . get_player_href($player_id));
+			http_response_code(201);			
+		}
 	}
 	else
 	{

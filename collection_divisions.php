@@ -82,6 +82,9 @@ function add_division()
 			 */
 			$division_id = $db_connection->insert_id;
 			update_division_players($db_connection, $division_id, $players);
+			
+			header('Location: ' . get_division_href_2($season['id'], $division_id));
+			http_response_code(201);
 				
 			$db_connection->commit();
 		}

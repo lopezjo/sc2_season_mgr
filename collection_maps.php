@@ -73,6 +73,12 @@ function add_map()
 			http_response_code(400);
 			echo "Failed query to MySQL: (" . $db_connection->errno . ") " . $db_connection->error;
 		}
+		else 
+		{
+			$map_id = $db_connection->insert_id;
+			header('Location: ' . get_map_href($map_id));
+			http_response_code(201);			
+		}
 	}
 	else
 	{

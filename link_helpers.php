@@ -47,7 +47,7 @@ function get_links($fkey_col, $fkey_id, $href_prefix)
 	db_close($db_connection);
 }
 
-function add_link($fkey_col, $fkey_id)
+function add_link($fkey_col, $fkey_id, $href_prefix)
 {
 	header('Content-Type: application/json');
 	$db_connection = db_open();
@@ -71,6 +71,12 @@ function add_link($fkey_col, $fkey_id)
 		{
 			http_response_code(400);
 			echo "Failed query to MySQL: (" . $db_connection->errno . ") " . $db_connection->error;
+		}
+		else
+		{
+			$link_id = $db_connection->insert_id;
+			header('Location: ' . BASE_URI . $href_prefix . '/links/' . $link_id);
+			http_response_code(201);			
 		}
 	}
 	else
@@ -133,6 +139,7 @@ function delete_link($link_id, $fkey_col, $fkey_id)
 		else
 		{
 			$result = $db_connection->query("DELETE FROM links WHERE link_id=$link_id");
+			http_response_code(204);
 		}
 	}
 

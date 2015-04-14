@@ -63,6 +63,7 @@ function delete_player($player_id)
 		else 
 		{	
 			$result = $db_connection->query("DELETE FROM players WHERE player_id=$player_id");
+			http_response_code(204);
 		}
 	}
 	

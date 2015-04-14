@@ -161,7 +161,7 @@ URI: ``POST http://[base_uri]/seasons``
 Sample POST data:
 
 <pre><code>
-{"date":null, "winner": {"id": null}, "maps": [{"id": 7}, {"id": 8}], "name": "Test Season 1"}
+{"date": "2015-04-13 00:00:00", "winner": {"id": null}, "maps": [{"id": 7}, {"id": 8}], "name": "Test Season 1"}
 </code></pre>
 
 #### Getting seasons
@@ -174,7 +174,7 @@ Sample data returned:
         "id": 3,
         "href": "http://localhost/sc2_season_mgr/seasons/3",
         "name": "Test Season 1",
-        "date": null,
+        "date": "2015-04-13 00:00:00",
         "winner": {
             "id": null,
             "name": null,
@@ -198,7 +198,7 @@ Sample data returned:
         "id": 4,
         "href": "http://localhost/sc2_season_mgr/seasons/4",
         "name": "Test Season 2",
-        "date": null,
+        "date": "2015-04-13 00:00:00",
         "winner": {
             "id": null,
             "name": null,
@@ -230,7 +230,7 @@ Sample data returned:
         "id": 3,
         "href": "http://localhost/sc2_season_mgr/seasons/3",
         "name": "Test Season 1",
-        "date": null,
+        "date": "2015-04-13 00:00:00",
         "winner": {
             "id": null,
             "name": null,
@@ -258,7 +258,7 @@ URI: ``PUT http://[base_uri]/seasons/[season_id]``
 Sample PUT data:
 
 <pre><code>
-{"date":null, "winner": {"id": null}, "maps": [{"id": 7}, {"id": 8}], "name": "Test Season 1"}
+{"date":"2015-04-13 00:00:00", "winner": {"id": null}, "maps": [{"id": 7}, {"id": 8}], "name": "Test Season 1"}
 </code></pre>
 
 #### Deleting a season

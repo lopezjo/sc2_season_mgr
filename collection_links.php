@@ -40,15 +40,20 @@ function get_links_by_match($season_id, $division_id, $match_id)
 
 function add_link_to_match($season_id, $division_id, $match_id)
 {
-	add_link("match_id", $match_id);
+	$href_prefix = '/seasons/'   . $season_id .
+				   '/divisions/' . $division_id .
+				   '/matches/'   . $match_id;
+	add_link("match_id", $match_id, $href_prefix);
 }
 
 function add_link_to_player($player_id)
 {
-	add_link("player_id", $player_id);
+	$href_prefix = '/players/' . $player_id;
+	add_link("player_id", $player_id, $href_prefix);
 }
 
 function add_link_to_map($map_id)
 {
-	add_link("map_id", $map_id);
+	$href_prefix = '/maps/' . $map_id;
+	add_link("map_id", $map_id, $href_prefix);
 }

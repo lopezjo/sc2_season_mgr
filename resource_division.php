@@ -63,6 +63,7 @@ function delete_division($season_id, $division_id)
 		else 
 		{
 			$result = $db_connection->query("DELETE FROM divisions WHERE division_id=$division_id");
+			http_response_code(204);
 		}
 	}
 	
