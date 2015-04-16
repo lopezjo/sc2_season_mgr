@@ -27,7 +27,7 @@ function get_standings($season_id, $division_id)
 			' SELECT player2_id AS player, COUNT(*) AS games FROM matches WHERE division_id=3 GROUP BY player2_id) AS player_union ' .
 		'GROUP BY player) AS player_games ' .
 	'LEFT JOIN ' .
-		'(SELECT winner_id as player, COUNT(*) As wins FROM matches WHERE division_id=3 GROUP BY winner_id) AS player_wins ' .
+		'(SELECT winner_id as player, COUNT(*) As wins FROM matches WHERE division_id=' . $division_id . ' GROUP BY winner_id) AS player_wins ' .
 	'ON player_games.player=player_wins.player ' .
 	'ORDER BY wins DESC';		
 		
